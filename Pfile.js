@@ -2,6 +2,7 @@ import React , {Component} from 'react';
 import Cardarray from './Cardarray';
 import {robots} from './details.js';
 import Searchtab from './Searchtab';
+import Scroll from './Scroll';
 import './Pfile.css';
 
 class Pfile extends	Component {
@@ -18,7 +19,7 @@ class Pfile extends	Component {
 	 
 	render(){
 		const a=this.state.robots;
-		let c=[];
+		let filterobot=[];
 		a.map((user,i) =>{
 		let namee=a[i].name.toLowerCase().includes(
 			this.state.searchfield.toLowerCase())
@@ -26,14 +27,16 @@ class Pfile extends	Component {
 			this.state.searchfield.toLowerCase())
 		
 		if(namee || emaile)
-			c.push(a[i])
+			filterobot.push(a[i])
 })
 
 			return(
 				<div className='tc'>
 				<h1 className='head'>ROBOTO</h1>
 				<Searchtab searchChange={this.onsearchChange}/>
-				<Cardarray robots={c}	/>
+				<Scroll>
+				<Cardarray robots={filterobot}	/>
+				</Scroll>
 			</div>
 		);
 	}
